@@ -242,21 +242,22 @@ public class Card {
         ArrayList<Integer> cHand = new ArrayList<>();
     for(int i = 0; i < size; i++){
         
-        cHand = startDeal();
+        cHand.add(this.startDeal());
     }
     return cHand;
     }
     
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
-    public ArrayList<Integer> startDeal(){
+    public int startDeal(){
+      int card;
       
-    //A: 
-    ArrayList<Integer> tHand = new ArrayList<>();
+    //A:
     ArrayList<Integer> tDeck = this.getShuffledDeck(); 
     ArrayList<String> tSuits = this.getShuffledSuits(); 
+    
     //B: 
-    tHand.add(tDeck.get(0));
+    card = tDeck.get(0);
     
     //C: 
     tDeck.remove(0);
@@ -267,7 +268,7 @@ public class Card {
     this.setShuffledSuits(tSuits);
     
     //E: 
-    return tHand; 
+    return card; 
     }
     
     
