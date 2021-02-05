@@ -15,6 +15,7 @@ public class CardTrick {
     
     private Card cards;
     
+    
     public Card getCard(){
     return cards;
     }
@@ -28,6 +29,10 @@ public class CardTrick {
         
         CardTrick newTrick = new CardTrick();
         newTrick.setCards(new Card());
+        newTrick.getCard().setDeckHolder(newTrick.getCard().getDeck());
+        newTrick.getCard().setShuffDeck(newTrick.getCard().shuffleDeck(newTrick.getCard().getDeckHolder()));
+        newTrick.getCard().setHand(newTrick.getCard().createHand(7));
+        newTrick.getCard().printHand(newTrick.getCard().getHand());
         
        
         
