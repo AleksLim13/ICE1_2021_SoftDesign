@@ -185,8 +185,8 @@ public class Card {
     public void shuffle(int rando) {
         
         //A: Create It
-       ArrayList<Integer> tDeck = this.getDeck();
-       ArrayList<String> tSuits = this.getSuits();
+       ArrayList<Integer> tDeck = this.getDeckHolder();
+       ArrayList<String> tSuits = this.getSuitsHolder();
        
         //B.1: Iterate It
         for (int i = 0; i < 52; i++) {
