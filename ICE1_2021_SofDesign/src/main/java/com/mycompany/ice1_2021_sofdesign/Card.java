@@ -3,86 +3,102 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.ice1_2021_sofdesign; 
+package com.mycompany.ice1_2021_sofdesign;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * A class that models playing card Objects. Cards have 
- * a value (note that Ace = 1, Jack -11, Queen =12, King = 13)
- * A suit (clubs, hearts, spades, diamonds).
- * There are 52 cards in a deck, no jokers.
- * This code is to be used in ICE1. When you create your own branch,
- * add your name as a modifier.
+ * A class that models playing card Objects. Cards have a value (note that Ace =
+ * 1, Jack -11, Queen =12, King = 13) A suit (clubs, hearts, spades, diamonds).
+ * There are 52 cards in a deck, no jokers. This code is to be used in ICE1.
+ * When you create your own branch, add your name as a modifier.
+ *
  * @author dancye
  */
 public class Card {
 
-   private String suit; //clubs, spades, diamonds, hearts
-   private int value;//1-13
-   private ArrayList<Integer> hand; 
-   private int possible;
-   public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
-   
-   //Standard deck contains values from 1-13 * 4. 
-   //This needs to be shuffled before used
-   private  List<Integer> deck = Arrays.asList(
-                                         1, 1, 1, 1, 
-                                         2, 2, 2, 2, 
-                                         3, 3, 3, 3, 
-                                         4, 4, 4, 4, 
-                                         5, 5, 5, 5, 
-                                         6, 6, 6, 6, 
-                                         7, 7, 7, 7, 
-                                         8, 8, 8, 8, 
-                                         9, 9, 9, 9, 
-                                         10, 10, 10, 10, 
-                                         11, 11, 11, 11, 
-                                         12, 12, 12, 12, 
-                                         13, 13, 13, 13);
-   
- 
+    private String suit; //clubs, spades, diamonds, hearts
+    private int value;//1-13
+    private List<Integer> hand;
+    private int possible;
+    private int temp;
+    public static final String[] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
+    private List<Integer> shuffledDeck; 
+
+    //Standard deck contains values from 1-13 * 4. 
+    //This needs to be shuffled before used
+    private final List<Integer> deck = Arrays.asList(
+            1, 1, 1, 1,
+            2, 2, 2, 2,
+            3, 3, 3, 3,
+            4, 4, 4, 4,
+            5, 5, 5, 5,
+            6, 6, 6, 6,
+            7, 7, 7, 7,
+            8, 8, 8, 8,
+            9, 9, 9, 9,
+            10, 10, 10, 10,
+            11, 11, 11, 11,
+            12, 12, 12, 12,
+            13, 13, 13, 13);
+
     /**
      * @return the suit
      */
     public String getSuit() {
         return suit;
     }
-    public List<Integer> getDeck(){
-    return deck; 
+
+    public List<Integer> getDeck() {
+        return deck;
     }
     
+    public List<Integer> getHand(){
+        return hand; 
+    }
+    
+    public List<Integer> getShuffDeck(){
+    return shuffledDeck; 
+    }
+    
+    public void setShuffDeck(List<Integer> newShuffDeck){
+     this.shuffledDeck = newShuffDeck;  
+    }
+    
+    public void setHand(List<Integer> newHand){
+        this.hand = newHand; 
+    }
+
     public int getPossible() {
-        return possible; 
+        return possible;
     }
-    
-    public void setPossible(int newPossible){
-    this.possible = newPossible; 
+
+    public int getTemp() {
+        return temp;
     }
-    
-    public void shuffleDeck(){
-     List<Integer> tDeck = this.getDeck();
-     int possible = (int)(Math.random()*52) + 1;
-     
-     int temp; 
-     for(int i = 0; i < 52; i++){
-         temp = tDeck.get(i);
-         if(possible != i){
-             tDeck.set(i, tDeck.get(possible));
-         }
-         else if(possible == i && possible < 40) {
-             this.setPossible(i + 10); 
-             tDeck.set(i, tDeck.get(possible));
-         }
-         else if(possible == i && possible > 40){
-             this.setPossible(i - 10); 
-             tDeck.set(i, tDeck.get(possible));
-         }
-         
-     }
+
+    public void setTemp(int newTemp) {
+        this.temp = newTemp;
     }
+
+    public void setPossible(int newPossible) {
+        this.possible = newPossible;
+    }
+
+    public void shuffleDeck() {
+        //A: Create It
+        List<Integer> tDeck = this.getDeck();
+        this.setPossible((int) (Math.random() * 52) + 1);
+        //B: Iterate It
+        for (int i = 0; i < 52; i++) {
+        //C: Set It 
+            this.setTemp(tDeck.get(i));
+            tDeck.set(i, tDeck.get(possible));
+        }//End for 
+
+    }//End 
 
     /**
      * @param suit the suit to set
@@ -104,12 +120,29 @@ public class Card {
     public void setValue(int value) {
         this.value = value;
     }
-    
-    public ArrayList<Integer> createHand(){
+
+    public List<Integer> createHand(int size){
+        List<Integer> cHand = new ArrayList<>();
+    for(int i = 0; i < size; i++){
         
-    return hand; 
+        
     }
-   
-   
+    return cHand;
+    }
     
-}
+    public List<Integer> startDeal(List<Integer> tHand){
+        //A: 
+    List<Integer> tDeck = this.getShuffDeck(); 
+    
+    //B: 
+    tHand.add(tDeck.get(0));
+    tDeck.remove(0);
+    
+    //C: 
+    this.setShuffDeck(tDeck);
+    
+    //D: 
+    return tHand; 
+    }
+
+}//End class 
