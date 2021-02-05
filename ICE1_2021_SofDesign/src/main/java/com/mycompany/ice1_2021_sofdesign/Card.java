@@ -130,6 +130,8 @@ public class Card {
     return cHand;
     }
     
+    //Deal first card and simultaneously remove it from deck
+    //Like in real life...
     public List<Integer> startDeal(List<Integer> tHand){
         //A: 
     List<Integer> tDeck = this.getShuffDeck(); 
