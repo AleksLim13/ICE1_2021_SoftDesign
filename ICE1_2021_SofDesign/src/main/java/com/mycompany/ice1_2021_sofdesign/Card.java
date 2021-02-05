@@ -6,8 +6,7 @@
 package com.mycompany.ice1_2021_sofdesign;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 /**
  * A class that models playing card Objects. Cards have a value (note that Ace =
@@ -23,7 +22,8 @@ public class Card {
     private int value;//1-13
     private ArrayList<Integer> hand;
     private int possible;
-    private int temp;
+    private int intTemp;
+    private String strTemp;
     private ArrayList<Integer> shuffledDeck; 
     private ArrayList<Integer> deckHolder; 
     private ArrayList<String> shuffledSuits;
@@ -67,9 +67,39 @@ public class Card {
             "clubs", "spades", "diamonds", "hearts",
             "clubs", "spades", "diamonds", "hearts"};
 
-    /**
-     * @return the suit
-     */
+   
+    public void setDependencies(
+             String suit,
+             int value,
+             ArrayList<Integer> hand,
+             int possible,
+             int intTemp,
+             String strTemp,
+             ArrayList<Integer> shuffledDeck, 
+             ArrayList<Integer> deckHolder, 
+             ArrayList<String> shuffledSuits,
+             ArrayList<String> suitsHolder,
+             ArrayList<String> suits,
+             ArrayList<Integer> deck){
+    
+    this.suit = suit;
+    this.value = value; 
+    this.hand = hand;
+    this.possible = possible;
+    this.intTemp = intTemp;
+    this.strTemp = strTemp;
+    this.shuffledDeck = shuffledDeck; 
+    this.deckHolder = deckHolder; 
+    this.shuffledSuits = shuffledSuits;
+    this.suitsHolder = suitsHolder;
+    this.suits = suits;
+    this.deck = deck; 
+    }
+    
+    
+    public int[] getDECK(){
+    return DECK;
+    }
     public String getSuit() {
         return suit;
     }
@@ -82,7 +112,7 @@ public class Card {
         return hand; 
     }
     
-    public ArrayList<Integer> getShuffDeck(){
+    public ArrayList<Integer> getShuffledDeck(){
     return shuffledDeck; 
     }
     
@@ -92,6 +122,10 @@ public class Card {
     
     public ArrayList<String> getSuits(){
     return suits;
+    }
+    
+    public String[] getSUITS(){
+    return SUITS;
     }
     
     public ArrayList<String> getSuitsHolder(){
@@ -115,7 +149,7 @@ public class Card {
     this.deckHolder = newDeckHolder; 
     }
     
-    public void setShuffDeck(ArrayList<Integer> newShuffDeck){
+    public void setShuffledDeck(ArrayList<Integer> newShuffDeck){
      this.shuffledDeck = newShuffDeck;  
     }
     
@@ -127,34 +161,61 @@ public class Card {
         return possible;
     }
 
-    public int getTemp() {
-        return temp;
+    public int getIntTemp() {
+        return intTemp;
     }
 
-    public void setTemp(int newTemp) {
-        this.temp = newTemp;
+    public void setIntTemp(int newIntTemp) {
+        this.intTemp = newIntTemp;
+    }
+    public String getStringTemp() {
+        return strTemp;
+    }
+
+    public void setStringTemp(String newStringTemp) {
+        this.strTemp = newStringTemp;
     }
 
     public void setPossible(int newPossible) {
         this.possible = newPossible;
     }
 
-    //Takes deck hoolder as param and returns shuffled deck
-    public ArrayList<Integer> shuffleDeck(ArrayList<Integer> tDeck) {
+    //Swaps pairs at rando position for
+    //shuffled deck and suits
+    public void shuffle(int rando) {
         
         //A: Create It
-        this.setPossible((int) (Math.random() * 52) + 1);
-        //B: Iterate It
+       ArrayList<Integer> tDeck = this.getDeck();
+       ArrayList<String> tSuits = this.getSuits();
+       
+        //B.1: Iterate It
         for (int i = 0; i < 52; i++) {
-        //C: Set It 
-            this.setTemp(tDeck.get(i));
-            tDeck.set(i, tDeck.get(possible));
+        // Set It 
+            this.setIntTemp(tDeck.get(i));
+            tDeck.set(i, tDeck.get(rando));
+            tDeck.set(rando, tDeck.get(i));
+  
+        }//End for
+        //B.2 Iterate It
+        for (int i = 0; i < 52; i++) {
+        // Set It 
+            this.setStringTemp(tSuits.get(i));
+            tSuits.set(i, tSuits.get(rando));
+            tSuits.set(rando, tSuits.get(i));
         }//End for 
-        
-        //D:  
-        return tDeck; 
-
+      
+        //C: Remember It
+        this.setShuffledDeck(tDeck);
+        this.setShuffledSuits(tSuits);
     }//End 
+    
+   
+    
+    
+    public int randNum(){
+    int rando = (int) (Math.random() * 52) + 1;
+    return rando;
+    }
 
     /**
      * @param suit the suit to set
@@ -192,16 +253,20 @@ public class Card {
       
     //A: 
     ArrayList<Integer> tHand = new ArrayList<>();
-    ArrayList<Integer> tDeck = this.getShuffDeck(); 
-    
+    ArrayList<Integer> tDeck = this.getShuffledDeck(); 
+    ArrayList<String> tSuits = this.getShuffledSuits(); 
     //B: 
     tHand.add(tDeck.get(0));
-    tDeck.remove(0);
     
     //C: 
-    this.setShuffDeck(tDeck);
+    tDeck.remove(0);
+    tSuits.remove(0);
     
     //D: 
+    this.setShuffledDeck(tDeck);
+    this.setShuffledSuits(tSuits);
+    
+    //E: 
     return tHand; 
     }
     
@@ -210,6 +275,25 @@ public class Card {
      for(int i = 0; i < hand.size(); i++){
          System.out.println(hand.get(i));
      }
+    }
+    
+    public ArrayList<Integer> initializeDeck(){
+    ArrayList<Integer> initDeck = new ArrayList<>();
+    int[] deck = getDECK();
+    for(int i = 0; i < 52; i++){
+        initDeck.add(deck[i]);
+    }
+    return initDeck;
+    }
+    
+    
+    public ArrayList<String> initializeSuits(){
+    ArrayList<String> initSuits = new ArrayList<>();
+    String[] suits = getSUITS();
+    for(int i = 0; i < 52; i++){
+        initSuits.add(suits[i]);
+    }
+    return initSuits;
     }
 
 }//End class 
