@@ -44,6 +44,7 @@ public class CardTrick {
     public static void main(String[] args) {
 
         CardTrick newTrick = new CardTrick();
+        newTrick.setCards(new Card());
         newTrick.getCard().setDependencies(
                 new String(),
                 newTrick.getValue(),
@@ -58,7 +59,7 @@ public class CardTrick {
                 new ArrayList<>(),
                 new ArrayList<>()
         );
-        newTrick.setCards(new Card());
+        
         newTrick.getCard().setDeckHolder(newTrick.getCard().initializeDeck());
         newTrick.getCard().setSuitsHolder(newTrick.getCard().initializeSuits());
         newTrick.getCard().setPossible(newTrick.getCard().randNum());
