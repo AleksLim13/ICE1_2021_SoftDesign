@@ -26,6 +26,7 @@ public class Card {
     private int temp;
     public static final String[] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
     private List<Integer> shuffledDeck; 
+    private List<Integer> deckHolder; 
 
     //Standard deck contains values from 1-13 * 4. 
     //This needs to be shuffled before used
@@ -63,6 +64,14 @@ public class Card {
     return shuffledDeck; 
     }
     
+    public List<Integer> getDeckHolder(){
+        return deckHolder; 
+    }
+    
+    public void setDeckHolder(List<Integer> newDeckHolder){
+    this.deckHolder = newDeckHolder; 
+    }
+    
     public void setShuffDeck(List<Integer> newShuffDeck){
      this.shuffledDeck = newShuffDeck;  
     }
@@ -87,9 +96,10 @@ public class Card {
         this.possible = newPossible;
     }
 
-    public void shuffleDeck() {
+    //Takes deck hoolder as param and returns shuffled deck
+    public List<Integer> shuffleDeck(List<Integer> tDeck) {
+        
         //A: Create It
-        List<Integer> tDeck = this.getDeck();
         this.setPossible((int) (Math.random() * 52) + 1);
         //B: Iterate It
         for (int i = 0; i < 52; i++) {
@@ -97,6 +107,9 @@ public class Card {
             this.setTemp(tDeck.get(i));
             tDeck.set(i, tDeck.get(possible));
         }//End for 
+        
+        //D:  
+        return tDeck; 
 
     }//End 
 
@@ -125,15 +138,17 @@ public class Card {
         List<Integer> cHand = new ArrayList<>();
     for(int i = 0; i < size; i++){
         
-        
+        cHand = startDeal();
     }
     return cHand;
     }
     
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
-    public List<Integer> startDeal(List<Integer> tHand){
-        //A: 
+    public List<Integer> startDeal(){
+      
+    //A: 
+    List<Integer> tHand = new ArrayList<>();
     List<Integer> tDeck = this.getShuffDeck(); 
     
     //B: 
@@ -145,6 +160,13 @@ public class Card {
     
     //D: 
     return tHand; 
+    }
+    
+    
+    public void printHand(List<Integer> hand){
+     for(int i = 0; i < hand.size(); i++){
+         System.out.println(hand.get(i));
+     }
     }
 
 }//End class 
