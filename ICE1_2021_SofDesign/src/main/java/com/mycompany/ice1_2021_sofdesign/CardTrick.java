@@ -60,11 +60,15 @@ public class CardTrick {
                 new ArrayList<>()
         );
         
+        
         newTrick.getCard().setDeckHolder(newTrick.getCard().initializeDeck());
         newTrick.getCard().setSuitsHolder(newTrick.getCard().initializeSuits());
-        newTrick.getCard().setPossible(newTrick.getCard().randNum());
-        newTrick.getCard().shuffle(newTrick.getCard().getPossible());
+        newTrick.getCard().shuffle();
+        newTrick.getCard().printHand(newTrick.getCard().getShuffledDeck());
         newTrick.getCard().setHand(newTrick.getCard().createHand(7));
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
         newTrick.getCard().printHand(newTrick.getCard().getHand());
 
     }
