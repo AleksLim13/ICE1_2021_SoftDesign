@@ -23,7 +23,7 @@ public class Card {
    private String suit; //clubs, spades, diamonds, hearts
    private int value;//1-13
    private ArrayList<Integer> hand; 
-
+   private int possible;
    public static final String [] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
    
    //Standard deck contains values from 1-13 * 4. 
@@ -52,6 +52,36 @@ public class Card {
     }
     public List<Integer> getDeck(){
     return deck; 
+    }
+    
+    public int getPossible() {
+        return possible; 
+    }
+    
+    public void setPossible(int newPossible){
+    this.possible = newPossible; 
+    }
+    
+    public void shuffleDeck(){
+     List<Integer> tDeck = this.getDeck();
+     int possible = (int)(Math.random()*52) + 1;
+     
+     int temp; 
+     for(int i = 0; i < 52; i++){
+         temp = tDeck.get(i);
+         if(possible != i){
+             tDeck.set(i, tDeck.get(possible));
+         }
+         else if(possible == i && possible < 40) {
+             this.setPossible(i + 10); 
+             tDeck.set(i, tDeck.get(possible));
+         }
+         else if(possible == i && possible > 40){
+             this.setPossible(i - 10); 
+             tDeck.set(i, tDeck.get(possible));
+         }
+         
+     }
     }
 
     /**
