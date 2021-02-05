@@ -21,16 +21,20 @@ public class Card {
 
     private String suit; //clubs, spades, diamonds, hearts
     private int value;//1-13
-    private List<Integer> hand;
+    private ArrayList<Integer> hand;
     private int possible;
     private int temp;
-    public static final String[] SUITS = {"Hearts", "Diamonds", "Spades", "Clubs"};
-    private List<Integer> shuffledDeck; 
-    private List<Integer> deckHolder; 
+    private ArrayList<Integer> shuffledDeck; 
+    private ArrayList<Integer> deckHolder; 
+    private ArrayList<String> shuffledSuits;
+    private ArrayList<String> suitsHolder;
+    private ArrayList<String> suits;
+    private ArrayList<Integer> deck; 
 
     //Standard deck contains values from 1-13 * 4. 
     //This needs to be shuffled before used
-    private final List<Integer> deck = Arrays.asList(
+    
+    private final int[] DECK = {
             1, 1, 1, 1,
             2, 2, 2, 2,
             3, 3, 3, 3,
@@ -43,9 +47,12 @@ public class Card {
             10, 10, 10, 10,
             11, 11, 11, 11,
             12, 12, 12, 12,
-            13, 13, 13, 13);
+            13, 13, 13, 1};
     
-    private final List<String> suits = Arrays.asList(
+    //Shuffle both of these the same way with same numbers
+    //Then the same slots in both will equal each other
+    //Update both at same time to keep in sync. 
+    private final String[] SUITS = {
             "clubs", "spades", "diamonds", "hearts",
             "clubs", "spades", "diamonds", "hearts",
             "clubs", "spades", "diamonds", "hearts",
@@ -58,7 +65,7 @@ public class Card {
             "clubs", "spades", "diamonds", "hearts",
             "clubs", "spades", "diamonds", "hearts",
             "clubs", "spades", "diamonds", "hearts",
-            "clubs", "spades", "diamonds", "hearts");
+            "clubs", "spades", "diamonds", "hearts"};
 
     /**
      * @return the suit
@@ -67,31 +74,52 @@ public class Card {
         return suit;
     }
 
-    public List<Integer> getDeck() {
+    public ArrayList<Integer> getDeck() {
         return deck;
     }
     
-    public List<Integer> getHand(){
+    public ArrayList<Integer> getHand(){
         return hand; 
     }
     
-    public List<Integer> getShuffDeck(){
+    public ArrayList<Integer> getShuffDeck(){
     return shuffledDeck; 
     }
     
-    public List<Integer> getDeckHolder(){
+    public ArrayList<Integer> getDeckHolder(){
         return deckHolder; 
     }
     
-    public void setDeckHolder(List<Integer> newDeckHolder){
+    public ArrayList<String> getSuits(){
+    return suits;
+    }
+    
+    public ArrayList<String> getSuitsHolder(){
+        return suitsHolder; 
+    
+    }
+    
+    public ArrayList<String> getShuffledSuits(){
+        return shuffledSuits;
+    }
+    
+    public void setShuffledSuits(ArrayList<String> newShuffledSuits){
+        this.shuffledSuits = newShuffledSuits; 
+    }
+    
+    public void setSuitsHolder(ArrayList<String> newSuitsHolder){
+    this.suitsHolder = newSuitsHolder; 
+    }
+    
+    public void setDeckHolder(ArrayList<Integer> newDeckHolder){
     this.deckHolder = newDeckHolder; 
     }
     
-    public void setShuffDeck(List<Integer> newShuffDeck){
+    public void setShuffDeck(ArrayList<Integer> newShuffDeck){
      this.shuffledDeck = newShuffDeck;  
     }
     
-    public void setHand(List<Integer> newHand){
+    public void setHand(ArrayList<Integer> newHand){
         this.hand = newHand; 
     }
 
@@ -112,7 +140,7 @@ public class Card {
     }
 
     //Takes deck hoolder as param and returns shuffled deck
-    public List<Integer> shuffleDeck(List<Integer> tDeck) {
+    public ArrayList<Integer> shuffleDeck(ArrayList<Integer> tDeck) {
         
         //A: Create It
         this.setPossible((int) (Math.random() * 52) + 1);
@@ -149,8 +177,8 @@ public class Card {
         this.value = value;
     }
 
-    public List<Integer> createHand(int size){
-        List<Integer> cHand = new ArrayList<>();
+    public ArrayList<Integer> createHand(int size){
+        ArrayList<Integer> cHand = new ArrayList<>();
     for(int i = 0; i < size; i++){
         
         cHand = startDeal();
@@ -160,11 +188,11 @@ public class Card {
     
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
-    public List<Integer> startDeal(){
+    public ArrayList<Integer> startDeal(){
       
     //A: 
-    List<Integer> tHand = new ArrayList<>();
-    List<Integer> tDeck = this.getShuffDeck(); 
+    ArrayList<Integer> tHand = new ArrayList<>();
+    ArrayList<Integer> tDeck = this.getShuffDeck(); 
     
     //B: 
     tHand.add(tDeck.get(0));
@@ -178,7 +206,7 @@ public class Card {
     }
     
     
-    public void printHand(List<Integer> hand){
+    public void printHand(ArrayList<Integer> hand){
      for(int i = 0; i < hand.size(); i++){
          System.out.println(hand.get(i));
      }
