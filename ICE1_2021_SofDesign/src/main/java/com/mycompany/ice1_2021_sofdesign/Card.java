@@ -47,7 +47,7 @@ public class Card {
             10, 10, 10, 10,
             11, 11, 11, 11,
             12, 12, 12, 12,
-            13, 13, 13, 1};
+            13, 13, 13, 13};
     
     //Shuffle both of these the same way with same numbers
     //Then the same slots in both will equal each other
@@ -108,6 +108,9 @@ public class Card {
         return deck;
     }
     
+    public void setDeck(ArrayList<Integer> newDeck){
+     this.deck = newDeck;
+    }
     public ArrayList<Integer> getHand(){
         return hand; 
     }
@@ -182,40 +185,42 @@ public class Card {
 
     //Swaps pairs at rando position for
     //shuffled deck and suits
-    public void shuffle(int rando) {
+    public void shuffle() {
         
         //A: Create It
        ArrayList<Integer> tDeck = this.getDeckHolder();
        ArrayList<String> tSuits = this.getSuitsHolder();
        
-        //B.1: Iterate It
-        for (int i = 0; i < 52; i++) {
-        // Set It 
+       int rando;
+       for(int i = 0; i < 52-1; i++){
+       rando = (int) (Math.random() * 51) + 1;
+       
+       //C: 
+        for(int j = 0; j < 1; j++){
+            
+            //C.1: 
             this.setIntTemp(tDeck.get(i));
             tDeck.set(i, tDeck.get(rando));
-            tDeck.set(rando, tDeck.get(i));
-  
-        }//End for
-        //B.2 Iterate It
-        for (int i = 0; i < 52; i++) {
-        // Set It 
+            tDeck.set(rando, this.getIntTemp());
+            
+            //C.2: 
             this.setStringTemp(tSuits.get(i));
             tSuits.set(i, tSuits.get(rando));
-            tSuits.set(rando, tSuits.get(i));
-        }//End for 
-      
-        //C: Remember It
+            tSuits.set(rando, this.getStringTemp());
+            
+        }//End C
+        
+       }//End B
+    
+        //D: Remember It
         this.setShuffledDeck(tDeck);
         this.setShuffledSuits(tSuits);
+        
     }//End 
     
    
     
-    
-    public int randNum(){
-    int rando = (int) (Math.random() * 52) + 1;
-    return rando;
-    }
+   
 
     /**
      * @param suit the suit to set
@@ -234,6 +239,7 @@ public class Card {
     /**
      * @param value the value to set
      */
+    
     public void setValue(int value) {
         this.value = value;
     }
