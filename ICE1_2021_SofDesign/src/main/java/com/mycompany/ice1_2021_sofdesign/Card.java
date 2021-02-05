@@ -44,6 +44,21 @@ public class Card {
             11, 11, 11, 11,
             12, 12, 12, 12,
             13, 13, 13, 13);
+    
+    private final List<String> suits = Arrays.asList(
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts",
+            "clubs", "spades", "diamonds", "hearts");
 
     /**
      * @return the suit
