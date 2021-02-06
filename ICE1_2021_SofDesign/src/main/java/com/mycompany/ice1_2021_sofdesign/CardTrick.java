@@ -57,14 +57,17 @@ public class CardTrick {
         manager.setHand(manager.createHand(7, testDeck.getDeck()));
         manager.printHand(manager.getHand());
         
+        
         //Ask: 
-        System.out.println("Whats the value of the card your thinking of: E.g., 1-13");
-        int uValue = input.promptIntUser(new Scanner(System.in));
-        System.out.println("What is the suit of the card you thinking of ? E.g., clubs...");
-        String uSuit = input.promptStringUser(new Scanner(System.in));
+        //System.out.println("Whats the value of the card your thinking of: E.g., 1-13");
+        //int uValue = input.promptIntUser(new Scanner(System.in));
+        //System.out.println("What is the suit of the card you thinking of ? E.g., clubs...");
+        //String uSuit = input.promptStringUser(new Scanner(System.in));
+        
+        Card luckyCard = new Card("DIAMONDS", 7);
         
         //Test: 
-        manager.isItHere(manager.getHand(), uValue, uSuit);
+        //manager.isItHere(manager.getHand(), uValue, uSuit);
         
     }
 
