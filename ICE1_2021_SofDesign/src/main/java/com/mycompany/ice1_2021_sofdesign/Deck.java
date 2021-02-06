@@ -13,40 +13,78 @@ import java.util.ArrayList;
  */
 public class Deck {
 
-    private Card suit = new Card();
-    String[] suits = suit.getSUITS();
-    private ArrayList<Card> deck = new ArrayList<Card>();
+    private Card suit;
+    private String[] suits;
+    private ArrayList<Card> deck;
     //0:CLUBS | 1:SPADES | 2:DIAMONDS | 3:HEARTS
 
-    public ArrayList<Card> initDeckP1(int value) {
-        //Start 1's: 
-        for (int i = 0; i < 4; i++) {
-            deck.add(new Card(suits[i], value));
+    //Call this first
+    public void initDI(Card newSuits, ArrayList<Card> newDeck) {
+        this.suit = newSuits;
+        this.deck = newDeck;
+        this.suits = suit.getSUITS();
+        this.setInitDeck();
+        this.deck = shuffle(deck);
+    }
 
+    public void printDeck() {
+        for (int i = 0; i < 52; i++) {
+            System.out.println(deck.get(i).getValue());
         }
-        return deck;
     }
 
     //Initialize deck with 4 of 1-13. 
     //Of objects as cards with 2 fields 
-    public ArrayList<Card> initDeck() {
+    public ArrayList<Card> initDeck(ArrayList<Card> tDeck) {
+
         //A: 
-        ArrayList<Card> tDeck = new ArrayList<>();
-        
-        //B: 
         for (int i = 1; i <= 13; i++) {
             //C: 
             for (int j = 0; j < 4; j++) {
-                tDeck.add(new Card(suits[i], i));
+                tDeck.add(new Card(suits[j], i));
 
             }
         }
-        //D: 
         return tDeck;
+    }
+
+    public void setDeck(ArrayList<Card> newDeck) {
+        this.deck = newDeck;
+    }
+
+    public void setInitDeck() {
+        this.deck = initDeck(new ArrayList<>());
     }
 
     public Deck() {
 
     }
 
-}
+    public ArrayList<Card> getDeck() {
+
+        return deck;
+    }
+
+    //Swap pairs of card objects at random positions / 52.
+    public ArrayList<Card> shuffle(ArrayList<Card> tDeck) {
+
+        //A: Create 
+        int rando;
+        for (int i = 0; i < 52 - 1; i++) {
+            rando = (int) (Math.random() * 51) + 1;
+
+            //C: 
+            for (int j = 0; j < 1; j++) {
+
+                //C.1: 
+                Card temp = tDeck.get(i);
+                tDeck.set(i, tDeck.get(rando));
+                tDeck.set(rando, temp);
+
+            }//End C
+
+        }
+        return tDeck;
+    }
+
+} //End class
