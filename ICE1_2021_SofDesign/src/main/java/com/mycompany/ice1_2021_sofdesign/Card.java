@@ -11,8 +11,9 @@ package com.mycompany.ice1_2021_sofdesign;
  */
 public class Card {
     
-    private String suit;
     private int value;
+    private String suit;
+    
     private final String[] SUITS = {"CLUBS", "SPADES", "DIAMONDS", "HEARTS"};
     
     public Card(){
@@ -20,8 +21,9 @@ public class Card {
     }
     
     public Card(String suit, int value){
-     this.suit = suit;
-     this.value = value; 
+        this.value = value;
+        this.suit = suit;
+      
     }
     
     public String getSuit(){
