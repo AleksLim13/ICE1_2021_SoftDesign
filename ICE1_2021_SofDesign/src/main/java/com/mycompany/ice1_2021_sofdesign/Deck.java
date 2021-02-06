@@ -22,9 +22,9 @@ public class Deck {
     public void initDI(Card newSuits, ArrayList<Card> newDeck) {
         this.suit = newSuits;
         this.deck = newDeck;
-        this.suits = suit.getSUITS();
         this.setInitDeck();
         this.deck = shuffle(deck);
+     
     }
 
     public void printDeck() {
@@ -50,6 +50,10 @@ public class Deck {
 
     public void setDeck(ArrayList<Card> newDeck) {
         this.deck = newDeck;
+    }
+    
+    public void setSuits(){
+        this.suits = suit.getSUITS();
     }
 
     public void setInitDeck() {
