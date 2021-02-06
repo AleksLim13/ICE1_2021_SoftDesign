@@ -7,7 +7,7 @@ package com.mycompany.ice1_2021_sofdesign;
 
 /**
  *
- * @author aleks
+ * @author Aleks Lim @ Sheridann College 2021
  */
 import java.util.InputMismatchException;
 import java.util.Scanner;
