@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class CardTrick {
 
-    private Card cards;
+    private TurnManager cards;
     private int value;
     private int possible;
     private int intTemp;
@@ -29,7 +29,7 @@ public class CardTrick {
         return possible;
     }
 
-    public Card getCard() {
+    public TurnManager getCard() {
         return cards;
     }
 
@@ -37,14 +37,14 @@ public class CardTrick {
         return intTemp;
     }
 
-    public void setCards(Card newCards) {
+    public void setCards(TurnManager newCards) {
         this.cards = newCards;
     }
 
     public static void main(String[] args) {
 
         CardTrick newTrick = new CardTrick();
-        newTrick.setCards(new Card());
+        newTrick.setCards(new TurnManager());
         newTrick.getCard().setDependencies(
                 new String(),
                 newTrick.getValue(),
