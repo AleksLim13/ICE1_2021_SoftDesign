@@ -55,12 +55,14 @@ public class CardTrick {
         manager.setHand(manager.createHand(7, testDeck.getDeck()));
         manager.printHand(manager.getHand());
         
-        /*
+        
         System.out.println("Whats the value of the card your thinking of: E.g., 1-13");
         int uValue = input.promptIntUser(new Scanner(System.in));
         System.out.println("What is the suit of the card you thinking of ? E.g., clubs...");
         String uSuit = input.promptStringUser(new Scanner(System.in));
-        */
+        
+        manager.isItHere(manager.getHand(), uValue, uSuit);
+        
     }
 
 }
