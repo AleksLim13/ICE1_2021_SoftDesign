@@ -68,7 +68,7 @@ public class CardTrick {
         
         //Test: 
         //manager.isItHere(manager.getHand(), uValue, uSuit);
-        manager.isItHere(manager.getHand(), luckyCard);
+        manager.isItHereAgain(manager.getHand(), luckyCard);
         
     }
 
