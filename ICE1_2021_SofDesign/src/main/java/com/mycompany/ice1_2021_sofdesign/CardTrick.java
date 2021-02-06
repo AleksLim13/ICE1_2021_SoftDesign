@@ -43,33 +43,9 @@ public class CardTrick {
 
     public static void main(String[] args) {
 
-        CardTrick newTrick = new CardTrick();
-        newTrick.setCards(new TurnManager());
-        newTrick.getCard().setDependencies(
-                new String(),
-                newTrick.getValue(),
-                new ArrayList<>(),
-                newTrick.getPossible(),
-                newTrick.getIntTemp(),
-                new String(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
-        
-        
-        newTrick.getCard().setDeckHolder(newTrick.getCard().initializeDeck());
-        newTrick.getCard().setSuitsHolder(newTrick.getCard().initializeSuits());
-        newTrick.getCard().shuffle();
-        newTrick.getCard().printHand(newTrick.getCard().getShuffledDeck());
-        newTrick.getCard().setHand(newTrick.getCard().createHand(7));
-        System.out.println(" ");
-        System.out.println(" ");
-        System.out.println(" ");
-        newTrick.getCard().printHand(newTrick.getCard().getHand());
+        Deck testDeck = new Deck();
+        testDeck.initDI(new Card(), new ArrayList<>());
+        testDeck.printDeck();
 
     }
 
