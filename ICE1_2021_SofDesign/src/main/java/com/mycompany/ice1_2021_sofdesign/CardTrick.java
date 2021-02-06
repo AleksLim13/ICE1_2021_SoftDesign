@@ -13,7 +13,7 @@ import java.util.Scanner;
  * asks the user to pick a card and searches the array of cards for the match to
  * the user's card. To be used as starting code in ICE 1
  *
- * @author dancye
+ * @author Aleks Lim @ Sheridan College 2021
  */
 public class CardTrick {
 
@@ -44,10 +44,12 @@ public class CardTrick {
 
     public static void main(String[] args) {
 
+        //Create: 
         Deck testDeck = new Deck();
         TurnManager manager = new TurnManager();
         InputStuff input = new InputStuff();
         
+        //Set: 
         testDeck.initDI(new Card(), new ArrayList<>());
         testDeck.setSuits();
         testDeck.setInitDeck();
@@ -55,12 +57,13 @@ public class CardTrick {
         manager.setHand(manager.createHand(7, testDeck.getDeck()));
         manager.printHand(manager.getHand());
         
-        
+        //Ask: 
         System.out.println("Whats the value of the card your thinking of: E.g., 1-13");
         int uValue = input.promptIntUser(new Scanner(System.in));
         System.out.println("What is the suit of the card you thinking of ? E.g., clubs...");
         String uSuit = input.promptStringUser(new Scanner(System.in));
         
+        //Test: 
         manager.isItHere(manager.getHand(), uValue, uSuit);
         
     }
