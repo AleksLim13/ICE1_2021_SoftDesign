@@ -275,6 +275,14 @@ public class TurnManager {
      }
     }
     
+    public void isItHere(ArrayList<Card> hand, int uValue, String uSuit){
+     for(int i = 0; i < hand.size(); i++){
+         if(hand.get(i).getValue() == uValue && hand.get(i).getSuit().equals(uSuit)){
+             System.out.println("It's in here at position " + i);
+         }   
+     }
+    }
+    
     public ArrayList<Integer> initializeDeck(){
     ArrayList<Integer> initDeck = new ArrayList<>();
     int[] deck = getDECK();
