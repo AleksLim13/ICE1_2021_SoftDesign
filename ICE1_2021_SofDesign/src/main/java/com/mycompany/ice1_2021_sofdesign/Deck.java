@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author aleks
+ * @author Aleks Lim @ Sheridan College 2021
  */
 public class Deck {
 
