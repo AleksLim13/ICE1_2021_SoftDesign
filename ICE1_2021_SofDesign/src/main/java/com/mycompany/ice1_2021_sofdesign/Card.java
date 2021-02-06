@@ -7,7 +7,7 @@ package com.mycompany.ice1_2021_sofdesign;
 
 /**
  *
- * @author aleks
+ * @author Aleks Lim @ Sheridan College 2021
  */
 public class Card {
     
