@@ -6,6 +6,7 @@
 package com.mycompany.ice1_2021_sofdesign;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * A class that fills a magic hand of 7 cards with random Card Objects and then
@@ -44,9 +45,22 @@ public class CardTrick {
     public static void main(String[] args) {
 
         Deck testDeck = new Deck();
+        TurnManager manager = new TurnManager();
+        InputStuff input = new InputStuff();
+        
         testDeck.initDI(new Card(), new ArrayList<>());
-        testDeck.printDeck();
-
+        testDeck.setSuits();
+        testDeck.setInitDeck();
+        testDeck.shuffle(testDeck.getDeck());
+        manager.setHand(manager.createHand(7, testDeck.getDeck()));
+        manager.printHand(manager.getHand());
+        
+        /*
+        System.out.println("Whats the value of the card your thinking of: E.g., 1-13");
+        int uValue = input.promptIntUser(new Scanner(System.in));
+        System.out.println("What is the suit of the card you thinking of ? E.g., clubs...");
+        String uSuit = input.promptStringUser(new Scanner(System.in));
+        */
     }
 
 }
