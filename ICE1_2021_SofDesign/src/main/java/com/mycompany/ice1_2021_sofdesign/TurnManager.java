@@ -20,7 +20,7 @@ public class TurnManager {
 
     private String suit; //clubs, spades, diamonds, hearts
     private int value;//1-13
-    private ArrayList<Integer> hand;
+    private ArrayList<Card> hand;
     private int possible;
     private int intTemp;
     private String strTemp;
@@ -71,7 +71,7 @@ public class TurnManager {
     public void setDependencies(
              String suit,
              int value,
-             ArrayList<Integer> hand,
+             ArrayList<Card> hand,
              int possible,
              int intTemp,
              String strTemp,
@@ -111,7 +111,7 @@ public class TurnManager {
     public void setDeck(ArrayList<Integer> newDeck){
      this.deck = newDeck;
     }
-    public ArrayList<Integer> getHand(){
+    public ArrayList<Card> getHand(){
         return hand; 
     }
     
@@ -156,7 +156,7 @@ public class TurnManager {
      this.shuffledDeck = newShuffDeck;  
     }
     
-    public void setHand(ArrayList<Integer> newHand){
+    public void setHand(ArrayList<Card> newHand){
         this.hand = newHand; 
     }
 
@@ -244,43 +244,34 @@ public class TurnManager {
         this.value = value;
     }
 
-    public ArrayList<Integer> createHand(int size){
-        ArrayList<Integer> cHand = new ArrayList<>();
+    public ArrayList<Card> createHand(int size, ArrayList<Card> tDeck){
+        ArrayList<Card> cHand = new ArrayList<>();
     for(int i = 0; i < size; i++){
         
-        cHand.add(this.startDeal());
+        cHand.add(this.startDeal(tDeck));
     }
     return cHand;
     }
     
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
-    public int startDeal(){
-      int card;
-      
-    //A:
-    ArrayList<Integer> tDeck = this.getShuffledDeck(); 
-    ArrayList<String> tSuits = this.getShuffledSuits(); 
-    
-    //B: 
+    public Card startDeal(ArrayList<Card> tDeck){
+        
+      Card card; 
+    //A: 
     card = tDeck.get(0);
     
-    //C: 
+    //B: 
     tDeck.remove(0);
-    tSuits.remove(0);
-    
-    //D: 
-    this.setShuffledDeck(tDeck);
-    this.setShuffledSuits(tSuits);
-    
-    //E: 
+   
+    //C: 
     return card; 
     }
     
     
-    public void printHand(ArrayList<Integer> hand){
+    public void printHand(ArrayList<Card> hand){
      for(int i = 0; i < hand.size(); i++){
-         System.out.println(hand.get(i));
+         System.out.println(hand.get(i).getValue() + " " + hand.get(i).getSuit());
      }
     }
     
