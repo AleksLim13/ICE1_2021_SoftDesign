@@ -13,7 +13,8 @@ public class Card {
     
     private String suit;
     private int value;
-    private final String[] SUITS = {"clubs", "spades", "diamonds", "hearts"};
+    private final String[] SUITS = {"CLUBS", "SPADES", "DIAMONDS", "HEARTS"};
+    
     public Card(){
     
     }
